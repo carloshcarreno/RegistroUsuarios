@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="contenido">
+        
+        <h:form id="register_id">
+            
+            <h:messages styleClass="alert-danger" /> 
+            
+            <h1> Register user </h1>
+            
+            Usuario: 
+            <h:inputText id="user_name" value="#{usuarioController.user.userName}" 
+                         requiredMessage="Oiga, debe llenar el usuario"     required="true"  />
+            <br/>
+            Contraseña: 
+            <h:inputText id="user_password"  value="#{usuarioController.user.userPassword}"  />     
+            <br/>
+            Facultad: 
+            <h:selectOneMenu id="user_program" value="#{usuarioController.user.userProgram}" >
+                <f:selectItem itemLabel="Sistemas" itemValue="S" />
+                <f:selectItem itemLabel="Industrial" itemValue="I" />
+                <f:selectItem itemLabel="Psicología" itemValue="P" /> 
+            </h:selectOneMenu>
+            <br/>    
+            <h:commandButton action="#{usuarioController.registrar()}" value="Registrar" styleClass="btn btn-primary" />
+            
+        </h:form>
+        
+        <br /><br />
+        <h:outputLink value="#{facesContext.externalContext.requestContextPath}/faces/list.xhtml" >Ver listado</h:outputLink>
+        
+        
+    </ui:define>
+
+</ui:composition>

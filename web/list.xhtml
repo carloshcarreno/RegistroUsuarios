@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="contenido">
+        <h1>LISTADO</h1>
+
+        
+        <h:form>
+            
+            <h:dataTable value="#{usuarioController.userList}" rendered="#{usuarioController.listEmpty}"
+                         var="u" border="1"  >
+                <h:column>
+                    <f:facet name="header">Usuario</f:facet>
+                    <h:outputText styleClass="alert-danger" value="#{u.userName}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Contraseña</f:facet>
+                        #{u.userPassword}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Programa</f:facet>
+                        #{u.userProgram}
+                </h:column>
+            </h:dataTable>
+            
+            <h:outputText value="Pailas no hay usuarios" rendered="#{!usuarioController.listEmpty}" />
+            
+
+        </h:form>
+
+
+        <h:outputLink value="#{facesContext.externalContext.requestContextPath}/faces/index.xhtml" >Regresar</h:outputLink>
+
+        <br /><br />
+        <h:form>
+            <h:commandButton value="Vaciar Todo" styleClass="btn btn-danger" action="#{usuarioController.vaciarLista()}" />
+        </h:form>
+        
+
+    </ui:define>
+
+</ui:composition>
